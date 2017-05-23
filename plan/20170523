@@ -1,0 +1,13 @@
+Plan as of 20170523:
+
+1. Work towards MVP
+	a. Create generic abstract Ship class
+		i. Implement tree structure for Ship components
+		ii. Implement methods for ship-to-ship combat and movement
+	b. Create one working subclass for type of Ship
+	c. Create a main game class which contains the action queue and all the ship instances
+	d. Add a basic text interface that allows for control of the elements of the game without embellishment
+
+2. Use Processing to create a graphical interface
+
+3. Add extra features and interesting elements
