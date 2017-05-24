@@ -17,5 +17,12 @@ public class Armor{
 	    }
 	}
     }
-    
+    public void setLevel(int lvl){
+	level = lvl;
+    }
+    public void remLeaf(boolean hit){
+	if(hit){
+	    
+	}
+    }
 }

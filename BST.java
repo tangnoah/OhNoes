@@ -64,76 +64,6 @@ public class BST
 	}
     }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    //~~~~~~~~~~~~~v~~TRAVERSALS~~v~~~~~~~~~~~~~~~~~~~~~
-
-    // each traversal should simply print to standard out 
-    // the nodes visited, in order
-
-    //process root, recurse left, recurse right
-    public void preOrderTrav() 
-    {
-	preOrderTrav( _root );
-    }
-    public void preOrderTrav( TreeNode currNode ) {
-	if ( currNode == null )
-	    return;
-	System.out.print( currNode.getValue() + " " );
-	preOrderTrav( currNode.getLeft() );
-	preOrderTrav( currNode.getRight() );
-    }
-
-    //recurse left, process root, recurse right
-    public void inOrderTrav() 
-    {
-	inOrderTrav( _root );
-    }
-    public void inOrderTrav( TreeNode currNode ) {
-	if ( currNode == null )
-	    return;
-	inOrderTrav( currNode.getLeft() );
-	System.out.print( currNode.getValue() + " " );
-	inOrderTrav( currNode.getRight() );
-    }
-
-    //recurse left, recurse right, process root
-    public void postOrderTrav() 
-    {
-	postOrderTrav( _root );
-    }
-    public void postOrderTrav( TreeNode currNode ) {
-	if ( currNode == null )
-	    return;
-	postOrderTrav( currNode.getLeft() );
-	postOrderTrav( currNode.getRight() );
-	System.out.print( currNode.getValue() + " "  );
-    }
-    //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-    /*****************************************************
-     * TreeNode search(int)
-     * returns pointer to node containing target,
-     * or null if target not found
-     *****************************************************/
-    TreeNode search( int target )
-    {
-	return search( target, _root );
-    }
-    TreeNode search( int target, TreeNode currNode )
-    {
-	if ( currNode==null || currNode.getValue()==target )
-	    return currNode;
-	else if ( target < currNode.getValue() )
-	    return search( target, currNode.getLeft() );
-	else if ( target > currNode.getValue() )
-	    return search( target, currNode.getRight() );
-	else
-	    return null; //to get past compiler
-    }
-
 
     /*****************************************************
      * int height()
@@ -178,44 +108,35 @@ public class BST
 	return foo;
     }
 
-
+    public TreeNode removeLeaf(){
+	TreeNode leader = _root;
+	TreeNode follower = null;
+	while(!isLeaf(leader)){
+	    if(leader.getRight() != null){
+		follower = leader;
+		leader = leader.getRight();
+	    }
+	    else if(leader.getLeft() != null){
+		follower = leader;
+		leader = leader.getLeft();
+	    }
+	}
+	if(follower == null){
+	    follower = leader;
+	}
+	else if(follower.getRight() == leader){
+	    follower.setRight(null);
+	}
+	else{
+	    follower.setLeft(null);
+	}
+	return follower;
+    }
 
     //~~~~~~~~~~~~~v~~MISC.HELPERS~~v~~~~~~~~~~~~~~~~~~~
     public boolean isLeaf( TreeNode node ) { 
 	return ( node.getLeft() == null && node.getRight() == null );
     }
     //~~~~~~~~~~~~~^~~MISC.HELPERS~~^~~~~~~~~~~~~~~~~~~~
-
-
-    //main method for testing
-    public static void main( String[] args ) 
-    {
-	BST arbol = new BST();
-
-	arbol.insert( 4 );
-	arbol.insert( 2 );
-	arbol.insert( 5 );
-	arbol.insert( 6 );
-	arbol.insert( 1 );
-	arbol.insert( 3 );
-
-	System.out.println( "\npre-order traversal:" );
-	arbol.preOrderTrav();
-	//expected:
-	// 4 2 1 3 5 6 
-
-	System.out.println( "\nin-order traversal:" );
-	arbol.inOrderTrav();
-	//expected:
-	// 1 2 3 4 5 6 
-	
-	System.out.println( "\npost-order traversal:" );
-	arbol.postOrderTrav();	
-	//expected:
-	// 1 3 2 6 5 4
-
-	/*~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~~~~~~~~~~
-	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    }//end main
 
 }//end class
