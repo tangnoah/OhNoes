@@ -9,3 +9,30 @@ YYYY-MM-DD |
 ==========='
 Name:: Work done
 
+___________
+2017-05-18 |
+==========='
+Noah:: Created devlog and initialized files
+
+___________
+2017-05-22 |
+==========='
+Maria:: Added Ship class
+
+___________
+2017-05-23 |
+==========='
+Maria, Alessandro, Noah:: Finalized proposal
+
+___________
+2017-05-24 |
+==========='
+Maria, Alessandro, Noah:: Created UMLs and Flowchart
+
+
+
+
+
+
+
+
