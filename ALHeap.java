@@ -17,7 +17,12 @@ public class ALHeap
     { 
 	_heap = new ArrayList<Integer>();
     }
-
+    public int get(int pos){
+	return _heap.get(pos);
+    }
+    public int size(){
+	return _heap.size();
+    }
 
 
     /*****************************************************
@@ -87,8 +92,8 @@ public class ALHeap
 	    }
 	    else 
 		break;
-	}
-    } //O(logn)
+		}
+    } 
 
     //Sole purpose is for final project, purpose is to remove the maximum value in a heap (since we are working with levels, this will always work.
 
