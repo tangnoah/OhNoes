@@ -14,6 +14,7 @@ You vs. the guy she tells you not to worry about
     \______t/
   ~~~~~~~~~~~~~
 ```
+```
      ====
       ||
    ()-||-()
@@ -22,6 +23,7 @@ You vs. the guy she tells you not to worry about
 |_____(_)______(_)_______________/~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \_______________________________/~   ~   ~    ~   ~       ~
 
+```
 Sailboat ascii art:  http://www.ascii-art.de/ascii/ab/boat.txt
 Ship ascii art: Noah Tang
 
