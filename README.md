@@ -6,12 +6,14 @@ OhNoes: Noah Tang, Maria Acuna, Alessandro Cartegni (Period 3)
 
 You vs. the guy she tells you not to worry about
 
- _~
+ ```
+  _~
     _~ )_)_~
     )_))_))_)
     _!__!__!_
     \______t/
   ~~~~~~~~~~~~~
+```
      ====
       ||
    ()-||-()
