@@ -1,6 +1,7 @@
 ArrayList<Ship> _ships= new ArrayList<Ship>();
 int currentTurn = 0; // which player's turn is it?
 PFont titleF;
+boolean gameStarted = false;
 
 void setup() {
   background(0, 200, 244); 
@@ -12,11 +13,53 @@ void setup() {
 
 void startGame() {
   title();
-  
+  textSize(48);
+  fill(25);
+  text("In this game you are an Admiral, and you must \n vanquish your sea-faring foes in exciting naval combat.", 350, 200);
+  startButtons();
 }
 
-void title(){
+void title() {
   textSize(72);
   textAlign(CENTER);
-  text("Welcome to ABoF GOTY Edition", 350, 100);
+  fill(90);
+  text("WELCOME TO ABoF GOTY EDITION", 350, 100);
+}
+
+void startButtons() {
+  fill(150);
+  rect(200, 320, 110, 40);
+  rect(390, 320, 110, 40);
+  fill(90);
+  text("NEW GAME", 255, 348);
+  text("HELP", 445, 348);
+}
+
+void mouseClicked() {
+  if (gameStarted == false) {
+    if ( mouseX > 200 && mouseX < 310 && mouseY > 320 && mouseY < 360) {//start game
+      background(0, 200, 244);
+      text("THE GAME STARTS HERE", 350, 250);
+      gameStarted = true;
+      game();
+    }
+    if ( mouseX > 390 && mouseX < 500 && mouseY > 320 && mouseY < 360) {//help menu
+      background(0, 200, 244);
+      text("HELP", 350, 100);
+      fill(150);
+      rect(295, 320, 110, 40);
+      fill(90);
+      text("BACK", 350, 348);
+    }
+    if ( mouseX > 295 && mouseX < 405 && mouseY > 320 && mouseY < 360) {//back to start
+      setup();
+    }
+  }
+}
+
+void draw() {
+}
+
+void game() {
+  //game goes here lol
 }
