@@ -4,8 +4,7 @@ public class Ship{
     private int attackStat;
     private int armorStat;
     private int speedStat;
-    private boolean isLives;
-    public Ship boat;
+    private Ship boat;
     private Armor armor;
 
     //constructor
@@ -15,7 +14,8 @@ public class Ship{
 
     //Accessors
     public boolean alive(){
-	return isLives;
+	//if your armor is gone and the root is null, then you ded.
+	return armor.size() <= 0;
     }
     public int getAttack(){
 	return attackStat;
@@ -42,5 +42,17 @@ public class Ship{
 	int temp = boat.getSpeed();
 	speedStat = newSpeed;
 	return temp;
+    }
+    //attack -- if a different ship hits you, you lose a node of your armor.
+    public boolean attack(Ship s){
+	if((int)(Math.random()*100*attackStat) > (int)(Math.random()*100*s.getArmor())){
+	    s.hit();
+	    return true;
+	}
+	return false;
+    }
+    //if you are hit you remove a node of your armor.
+    public void hit(){
+	armor.removeMax();
     }
 }
