@@ -1,7 +1,12 @@
 ArrayList<Ship> _ships= new ArrayList<Ship>();
 int currentTurn = 0; // which player's turn is it?
 PFont titleF;
-boolean gameStarted = false;
+String gameState = "";
+boolean textPrompt = false;
+String promptInput = "";
+ArrayList<String> _inputs= new ArrayList<String>();
+// null - game not started
+// selection - picking a ship screen
 
 void setup() {
   background(0, 200, 244); 
@@ -36,11 +41,11 @@ void startButtons() {
 }
 
 void mouseClicked() {
-  if (gameStarted == false) {
+  if (gameState.equals("")) {
     if ( mouseX > 200 && mouseX < 310 && mouseY > 320 && mouseY < 360) {//start game
       background(0, 200, 244);
       text("THE GAME STARTS HERE", 350, 250);
-      gameStarted = true;
+      gameState = "selection";
       game();
     }
     if ( mouseX > 390 && mouseX < 500 && mouseY > 320 && mouseY < 360) {//help menu
@@ -55,11 +60,38 @@ void mouseClicked() {
       setup();
     }
   }
+  if (gameState.equals("selection")) {
+  }
 }
 
 void draw() {
 }
 
 void game() {
-  //game goes here lol
+   background(0, 200, 244);
+  text( "Player One, enter name now:", 350, 250);
+  prompt();
+  text( _inputs.get(_inputs.size()-1), 350, 350);
+}
+
+void prompt(){
+ promptInput = "";
+ textPrompt = true;
+  
+}
+
+
+
+void keyPressed(){
+  if( textPrompt){
+    if( key == ENTER){
+     textPrompt = false; 
+     _inputs.add(promptInput);
+     promptInput = "";
+    }
+    else{
+     promptInput  += String.valueOf(key);
+    }
+  }
+  
 }

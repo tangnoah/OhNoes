@@ -1,0 +1,21 @@
+Plan as of 5-30-2017
+--------------------
+
+Working:
+- Ship Class
+- Armor Class
+- Opening of the game
+
+Plan for the week:
+- Implement the actual gameplay.
+  - Create UI for movement of ships
+  - Allow UI to be passed between two players
+  - Implement menu for configuration of either player's
+    team
+- Add additional features:
+  - Different ship types
+  - Images and other visual tweaks
+  - Scenarios
+
+Estimated time for implementation of the gameplay: 3 to 6 hr. To be done n class and at home, possibly at Dojo.
+
