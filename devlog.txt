@@ -40,6 +40,7 @@ ___________
 
 Noah:: Helped Maria reslove Armor issue.
 Maria:: Finished Armor and Ship classes.
+Alessandro:: Added Launch screen, buttons
 
 
 

@@ -1,4 +1,4 @@
-# A Boatload of Fun! GOTY Edition**
+# :anchor: A Boatload of Fun! GOTY Edition :anchor:
 
 ## OhNoes: Noah Tang, Maria Acuna, Alessandro Cartegni (Period 3)
 
@@ -33,7 +33,7 @@ Ship ascii art: Noah Tang
 
 Our project is a top-down naval warfare game. The player would take control of a small fleet and fight against either a randomized fleet or another player.  The game will be turn-based and take place on an open-water field. Victory is achieved by the complete destruction of the opposing side’s fleet. Ratings will be given at the conclusion of the game to summarize just how well each player did. Our project will utilize a graphical interface written in processing. 
 
-### How to launch
+### How to launch :rocket:
 
 *1. Open up the processing script entitled OhNoes.pde by running `$ processing OhNoes.pde` in the terminal while in the correct directory.*
 
