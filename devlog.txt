@@ -17,7 +17,7 @@ Noah:: Created devlog and initialized files
 ___________
 2017-05-22 |
 ==========='
-Maria:: Added Ship class
+Maria:: Added Ship class and Armor
 
 ___________
 2017-05-23 |
@@ -29,8 +29,25 @@ ___________
 ==========='
 Maria, Alessandro, Noah:: Created UMLs and Flowchart
 
+___________
+2017-05-26 |
+==========='
+Maria: Continued working on Ship and Armor classes, opened issue on Armor toString().
 
+___________
+2017-05-30 |
+==========='
 
+Noah:: Helped Maria reslove Armor issue.
+Maria:: Finished Armor and Ship classes.
+Alessandro:: Added Launch screen, buttons
+
+___________
+2017-05-31 |
+==========='
+
+Noah:: Worked on driver, added movement to ships
+Alessandro:: Fixed issues with README
 
 
 
