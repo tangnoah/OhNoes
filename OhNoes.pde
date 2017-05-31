@@ -66,9 +66,10 @@ void draw() {
 
 void game() {
    background(0, 200, 244);
-  text( "Player One, enter name now:", 350, 250);
-  prompt();
-  text( _inputs.get(_inputs.size()-1), 350, 350);
+   fill(51, 51, 0);
+   rect(500,0,200,500);
+   fill(256, 256, 256);
+   
 }
 
 void keyPressed(){
