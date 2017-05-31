@@ -42,6 +42,13 @@ Noah:: Helped Maria reslove Armor issue.
 Maria:: Finished Armor and Ship classes.
 Alessandro:: Added Launch screen, buttons
 
+___________
+2017-05-31 |
+==========='
+
+Noah:: Worked on driver, added movement to ships
+Alessandro:: Fixed issues with README
+
 
 
 
