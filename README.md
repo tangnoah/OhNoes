@@ -35,10 +35,10 @@ Our project is a top-down naval warfare game. The player would take control of a
 
 ### How to launch
 
-#### 1. Open up the processing script entitled OhNoes.pde by running `$ processing OhNoes.pde` in the terminal while in the correct directory.
-#### 2. You will be able to see and edit the source code of the project with Processing's IDE.
-#### 3. Click on the right-facing arrow button at the top of the editor to run the sketch.
-#### 4. Enjoy!
+**1. Open up the processing script entitled OhNoes.pde by running `$ processing OhNoes.pde` in the terminal while in the correct directory.
+2. You will be able to see and edit the source code of the project with Processing's IDE.
+3. Click on the right-facing arrow button at the top of the editor to run the sketch.
+4. Enjoy!**
 
 ### How it works
 
