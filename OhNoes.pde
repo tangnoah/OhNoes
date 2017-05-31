@@ -2,9 +2,6 @@ ArrayList<Ship> _ships= new ArrayList<Ship>();
 int currentTurn = 0; // which player's turn is it?
 PFont titleF;
 String gameState = "";
-boolean textPrompt = false;
-String promptInput = "";
-ArrayList<String> _inputs= new ArrayList<String>();
 // null - game not started
 // selection - picking a ship screen
 
@@ -74,24 +71,6 @@ void game() {
   text( _inputs.get(_inputs.size()-1), 350, 350);
 }
 
-void prompt(){
- promptInput = "";
- textPrompt = true;
-  
-}
-
-
-
 void keyPressed(){
-  if( textPrompt){
-    if( key == ENTER){
-     textPrompt = false; 
-     _inputs.add(promptInput);
-     promptInput = "";
-    }
-    else{
-     promptInput  += String.valueOf(key);
-    }
-  }
   
 }
