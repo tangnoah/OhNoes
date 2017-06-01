@@ -38,6 +38,13 @@ void startButtons() {
   text("HELP", 445, 348);
 }
 
+void helpText() {
+  fill(0);
+  textSize(36);
+  text("On Your Turn: \n \n 1. Move your ships using the arrow keys. You only get one turn and one move per ship. \n 2. Select a ship to attack by clicking and pray to RNGesus. Shoot with SPACE. \n 3. Wait for your turn again and reread these instructions if needed.", 350, 150);
+}
+
+
 void mouseClicked() {
   if (gameState.equals("")) {
     if ( mouseX > 200 && mouseX < 310 && mouseY > 320 && mouseY < 360) {//start game
@@ -49,9 +56,11 @@ void mouseClicked() {
     if ( mouseX > 390 && mouseX < 500 && mouseY > 320 && mouseY < 360) {//help menu
       background(0, 200, 244);
       text("HELP", 350, 100);
+      helpText();
       fill(150);
       rect(295, 320, 110, 40);
       fill(90);
+      textSize(48);
       text("BACK", 350, 348);
     }
     if ( mouseX > 295 && mouseX < 405 && mouseY > 320 && mouseY < 360) {//back to start
@@ -59,6 +68,7 @@ void mouseClicked() {
     }
   }
   if (gameState.equals("selection")) {
+    //help button
   }
 }
 
@@ -66,14 +76,12 @@ void draw() {
 }
 
 void game() {
-   _ships.add( new Ship( 10, 10, 10, 10, 10, 0, PI/2, 0) );
-   background(0, 200, 244);
-   fill(51, 51, 0);
-   rect(500,0,200,500);
-   fill(256, 256, 256);
-   
+  _ships.add( new Ship( 10, 10, 10, 10, 10, 0, PI/2, 0) );
+  background(0, 200, 244);
+  fill(51, 51, 0);
+  rect(500, 0, 200, 500);
+  fill(256, 256, 256);
 }
 
-void keyPressed(){
-  
+void keyPressed() {
 }
