@@ -73,9 +73,22 @@ void mouseClicked() {
 }
 
 void draw() {
+  if ( gameState.equals("battle")) {
+    background(0, 200, 244);
+    fill(51, 51, 0);
+    rect(500, 0, 200, 500);
+    fill(256, 256, 256);
+    for ( Ship b : _ships) {
+      translate(b.getPos()[0], b.getPos()[1]);
+      rotate(b.getHeading());
+      rect( b.getPos()[0]-25, b.getPos()[1]-5, 50, 10);
+    }
+  }
 }
 
 void game() {
+
+  gameState = "battle";
   _ships.add( new Ship( 10, 10, 10, 10, 10, 0, PI/2, 0) );
   background(0, 200, 244);
   fill(51, 51, 0);
