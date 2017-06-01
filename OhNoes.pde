@@ -1,5 +1,6 @@
 ArrayList<Ship> _ships= new ArrayList<Ship>();
 int currentTurn = 0; // which player's turn is it?
+int turnCount = 1;
 PFont titleF;
 String gameState = "";
 // null - game not started
@@ -65,6 +66,7 @@ void draw() {
 }
 
 void game() {
+   _ships.add( new Ship( 10, 10, 10, 10, 10, 0, PI/2, 0) );
    background(0, 200, 244);
    fill(51, 51, 0);
    rect(500,0,200,500);
