@@ -8,7 +8,7 @@ public class Ship {
   private int x;
   private int y;
   private float heading;
-  private float turnRate;
+  public float turnRate;
   private int owner;
 
   //constructor
@@ -87,7 +87,7 @@ public class Ship {
   }
 
   //move
-  public void move( int units ) {
+  public void move( float units ) {
     if ( Math.abs(units) <= speedStat) { 
       x += (int)( Math.cos(heading) * units ); 
       y += (int)( Math.sin(heading) * units );

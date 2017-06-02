@@ -3,6 +3,9 @@ int currentTurn = 0; // which player's turn is it?
 int turnCount = 1;
 PFont titleF;
 String gameState = "";
+String message = "";
+float turned = 0;
+float moved = 0;
 // null - game not started
 // selection - picking a ship screen
 
@@ -77,19 +80,27 @@ void draw() {
     background(0, 200, 244);
     fill(51, 51, 0);
     rect(500, 0, 200, 500);
+    fill( 255);
+    //ad a new font here
+    text( message, 550, 50);
     fill(256, 256, 256);
     for ( Ship b : _ships) {
-      translate(b.getPos()[0], b.getPos()[1]);
+      translate(b.getPos()[0]+25, b.getPos()[1]+5);
       rotate(b.getHeading());
-      rect( b.getPos()[0]-25, b.getPos()[1]-5, 50, 10);
+      translate(-25, -5);
+      rect( 0, 0, 50, 10);
+      translate(25, 5);
+      rotate( - (b.getHeading()) );
+      translate(-(b.getPos()[0]+25), -(b.getPos()[1]+5));
     }
   }
 }
 
 void game() {
-
+  message = "Welcome";
   gameState = "battle";
-  _ships.add( new Ship( 10, 10, 10, 10, 10, 0, PI/2, 0) );
+  _ships.add( new Ship( 10, 10, 30, 100, 100, 0, PI/2, 0) );
+  _ships.add( new Ship( 10, 10, 30, 100, 100, 0, PI/2, 0) );
   background(0, 200, 244);
   fill(51, 51, 0);
   rect(500, 0, 200, 500);
@@ -97,4 +108,21 @@ void game() {
 }
 
 void keyPressed() {
+  if ( gameState.equals("battle")) {
+    if (key == CODED) {
+      if ( keyCode == LEFT && turned <= _ships.get(0).turnRate) {
+        _ships.get(0).rotate( -PI/36);
+        turned += PI/36;
+      }
+      if ( keyCode == RIGHT && turned <= _ships.get(0).turnRate) {
+        _ships.get(0).rotate( PI/36);
+        turned += PI/36;
+      }
+      if ( keyCode == UP && moved <= _ships.get(0).getSpeed()) {
+        _ships.get(0).move( 1.5);
+        moved += 1;
+      }
+      
+    }
+  }
 }
