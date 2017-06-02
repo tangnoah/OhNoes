@@ -49,6 +49,12 @@ ___________
 Noah:: Worked on driver, added movement to ships
 Alessandro:: Fixed issues with README
 
+___________
+2017-06-01 |
+==========='
+
+Noah:: Continued driver work
+Alessandro:: Added Help instructions
 
 
 
