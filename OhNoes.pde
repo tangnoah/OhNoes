@@ -6,6 +6,7 @@ String gameState = "";
 String message = "";
 float turned = 0;
 float moved = 0;
+ArrayPriorityQueue<Ship> _shipOrder = new ArrayPriorityQueue<Ship>();
 // null - game not started
 // selection - picking a ship screen
 
@@ -52,7 +53,7 @@ void mouseClicked() {
   if (gameState.equals("")) {
     if ( mouseX > 200 && mouseX < 310 && mouseY > 320 && mouseY < 360) {//start game
       background(0, 200, 244);
-      text("THE GAME STARTS HERE", 350, 250);
+      //text("THE GAME STARTS HERE", 350, 250);
       gameState = "selection";
       game();
     }
@@ -96,15 +97,26 @@ void draw() {
   }
 }
 
+
 void game() {
   message = "Welcome";
-  gameState = "battle";
+  if (gameState.equals("selection")){
+  background(51, 51, 0);
+  rect(450, 25, 200, 450);
+  rect(50, 25, 200, 450);
+  for ( Ship b : _ships){
+    
+  }
+  
+  }
+  else if( gameState.equals("battle")){
   _ships.add( new Ship( 10, 10, 30, 100, 100, 0, PI/2, 0) );
   _ships.add( new Ship( 10, 10, 30, 100, 100, 0, PI/2, 0) );
   background(0, 200, 244);
   fill(51, 51, 0);
   rect(500, 0, 200, 500);
   fill(256, 256, 256);
+  }
 }
 
 void keyPressed() {
@@ -122,7 +134,10 @@ void keyPressed() {
         _ships.get(0).move( 1.5);
         moved += 1;
       }
-      
+      if ( keyCode == DOWN && moved <= _ships.get(0).getSpeed()) {
+        _ships.get(0).move( -1.5);
+        moved += 1;
+      }
     }
   }
 }

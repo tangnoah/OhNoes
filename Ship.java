@@ -1,12 +1,12 @@
-public class Ship {
+public class Ship implements Comparable {
 
   //Instance vars
   private int attackStat;
   private int armorStat;
   private int speedStat;
   private Armor armor;
-  private int x;
-  private int y;
+  private float x;
+  private float y;
   private float heading;
   public float turnRate;
   private int owner;
@@ -16,7 +16,7 @@ public class Ship {
     Armor armor = new Armor();
   }
 
-  public Ship( int atS, int arS, int spS, int xP, int yP, float he, float tu, int ow) {
+  public Ship( int atS, int arS, int spS, float xP, float yP, float he, float tu, int ow) {
     this();
     attackStat = atS;
     armorStat = arS;
@@ -27,7 +27,17 @@ public class Ship {
     turnRate = tu;
     owner = ow;
   }
-
+  //interface compliance
+  public int compareTo(Object o){
+    Ship s = (Ship) o;
+    if ( s.getSpeed() > speedStat){
+      return -1;}
+    else if( s.getSpeed() < speedStat){
+      return 1;}
+    else{
+      return 0;}
+  }
+  
   //Accessors
   public boolean alive() {
     //if your armor is gone and the root is null, then you ded.
@@ -43,7 +53,7 @@ public class Ship {
     return speedStat;
   }
   public int[] getPos() {
-    int[] posArr = { x, y};
+    int[] posArr = { (int)x, (int)y};
     return posArr;
   }
   public float getHeading() {
@@ -89,14 +99,8 @@ public class Ship {
   //move
   public void move( float units ) {
     if ( Math.abs(units) <= speedStat) { 
-      x += (int)( Math.cos(heading) * units ); 
-      y += (int)( Math.sin(heading) * units );
-    } else if ( units > 0) {
-      x += (int)( Math.cos(heading) * speedStat ); 
-      y += (int)( Math.sin(heading) * speedStat );
-    } else if ( units > 0) {
-      x -= (int)( Math.cos(heading) * speedStat ); 
-      y -= (int)( Math.sin(heading) * speedStat );
+      x += ( Math.cos(heading) * units ); 
+      y += ( Math.sin(heading) * units );
     }
   }
 

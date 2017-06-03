@@ -1,6 +1,6 @@
 import java.util.ArrayList;
     
-public class ArrayPriorityQueue<T> implements PriorityQueue<T> {
+public class ArrayPriorityQueue<T> {
     
     ArrayList<T> PQueue;
     
