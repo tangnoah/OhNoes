@@ -8,15 +8,16 @@ public class Ship implements Comparable {
   private float x;
   private float y;
   private float heading;
-  public float turnRate;
+  private float turnRate;
   private int owner;
+  private String desc;
 
   //constructor
   public Ship() {
     Armor armor = new Armor();
   }
 
-  public Ship( int atS, int arS, int spS, float xP, float yP, float he, float tu, int ow) {
+  public Ship( int atS, int arS, int spS, float xP, float yP, float he, float tu, int ow, String newDesc) {
     this();
     attackStat = atS;
     armorStat = arS;
@@ -26,6 +27,7 @@ public class Ship implements Comparable {
     heading = he;
     turnRate = tu;
     owner = ow;
+    desc = newDesc;
   }
   //interface compliance
   public int compareTo(Object o){
@@ -39,6 +41,9 @@ public class Ship implements Comparable {
   }
   
   //Accessors
+  public String getDesc(){
+   return desc; 
+  }
   public boolean alive() {
     //if your armor is gone and the root is null, then you ded.
     return armor.size() <= 0;
@@ -59,8 +64,19 @@ public class Ship implements Comparable {
   public float getHeading() {
     return heading;
   }
+  public float getTurnRate() {
+    return turnRate;
+  }
+  public int getOwner(){
+    return owner;    
+  }
 
   //modifiers
+  public String setDesc( String newDesc){
+   String temp = desc;
+   desc = newDesc;
+   return temp;
+  }
   public int setAttack(int newAttack) {
     int temp = getAttack();
     attackStat = newAttack;
