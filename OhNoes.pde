@@ -7,6 +7,8 @@ String message = "";
 float turned = 0;
 float moved = 0;
 ArrayPriorityQueue<Ship> _shipOrder = new ArrayPriorityQueue<Ship>();
+String[] classList = { "Destroyer", "Gunboat" };
+int temp = 0;
 // null - game not started
 // selection - picking a ship screen
 
@@ -55,7 +57,6 @@ void mouseClicked() {
       background(0, 200, 244);
       //text("THE GAME STARTS HERE", 350, 250);
       gameState = "selection";
-      selection();
     }
     if ( mouseX > 390 && mouseX < 500 && mouseY > 320 && mouseY < 360) {//help menu
       background(0, 200, 244);
@@ -112,12 +113,12 @@ void draw() {
     textFont( loadFont("CourierNewPS-BoldMT-14.vlw"));
     for ( Ship b : _ships) {
       if (b.getOwner() == 1) {
-        image( loadImage("destroyer.png"), 60, nextYl);
+        image( loadImage(b.getDesc() + ".png"), 60, nextYl);
         text( b.getDesc(), 100, nextYl + 50);
         nextYl += 60;
       }
       if (b.getOwner() == 2) {
-        image( loadImage("destroyer.png"), 460, nextYr);
+        image( loadImage(b.getDesc() + ".png"), 460, nextYr);
         text( b.getDesc(), 500, nextYr + 50);
         nextYr += 60;
       }
@@ -126,20 +127,25 @@ void draw() {
     textFont( loadFont("CourierNewPS-BoldMT-20.vlw"));
     text( "Press A to\n add ships.", 350, 250);
   }
-  
-  if( gameState.equals("add")){
-    textFont( loadFont("CourierNewPS-BoldMT-24.vlw") );
+
+  if ( gameState.equals("add")) {
+    textFont( loadFont("CourierNewPS-BoldMT-20.vlw") );
     background(51, 51, 0);
     fill(255);
     fill(0);
-    rect(20,20, 360, 460); 
+    rect(20, 20, 360, 460); 
     image(loadImage("supply.jpg"), 25, 25);
+    fill(255);
+    text( "Constructing a New Ship", 540, 30);
+    textFont( loadFont("CourierNewPS-BoldMT-14.vlw") );
+    text( "Use arrow Keys to choose ship class", 540, 60);
+    rect(400, 70, 200, 60);
+    image( loadImage( classList[temp] + ".png"), 410, 80);
+    fill( 0);
+    text( classList[temp], 530, 100);
+    fill(255);
+    text( "Press 1 to add to Player 1's group\nand 2 to add to Player 2's group.", 540, 400);
   }
-}
-
-void selection() {
-  _ships.add( new Ship( 10, 10, 30, 100, 100, 0, PI/2, 1, "Destroyer") );
-  _ships.add( new Ship( 10, 10, 30, 100, 100, 0, PI/2, 2, "Destroyer") );
 }
 
 void game() {
@@ -172,10 +178,34 @@ void keyPressed() {
       }
     }
   }
-  
-  if ( gameState.equals( "selection")){
-    if( key == 'A' || key == 'a'){
-     gameState = "add"; 
+
+  if ( gameState.equals( "selection")) {
+    if ( key == 'A' || key == 'a') {
+      gameState = "add"; 
+      temp = 0;
+    }
+  }
+
+  if ( gameState.equals( "add")) {
+    if ( key == CODED && keyCode == RIGHT && temp < classList.length - 1) {
+      temp += 1;
+    }
+    if ( key == CODED && keyCode == LEFT && temp > 0) {
+      temp -= 1;
+    }
+    if ( key == '1' || key == '2') {
+      String[] attributes = loadStrings( classList[temp] + "-attributes.txt");
+      _ships.add( new Ship( 
+        int(attributes[0]), 
+        int(attributes[1]), 
+        int(attributes[2]), 
+        int(random(10,500)), 
+        int(random(10,600)), 
+        int(attributes[3]), 
+        int(attributes[4]), 
+        Character.getNumericValue(key), classList[temp]) );
+      temp = 0;
+      gameState = "selection";
     }
   }
 }
