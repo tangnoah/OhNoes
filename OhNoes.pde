@@ -3,7 +3,7 @@ int currentTurn = 0; // which player's turn is it?
 int turnCount = 1;
 PFont titleF;
 String gameState = "";
-String message = "";
+String message = "Welcome";
 float turned = 0;
 float moved = 0;
 ArrayPriorityQueue<Ship> _shipOrder = new ArrayPriorityQueue<Ship>();
@@ -79,12 +79,10 @@ void mouseClicked() {
 void draw() {
   if ( gameState.equals("battle")) {
     background(0, 200, 244);
-    fill(51, 51, 0);
-    rect(500, 0, 200, 500);
-    fill( 255);
+
+    
     //ad a new font here
-    text( message, 550, 50);
-    fill(256, 256, 256);
+    fill(100);
     for ( Ship b : _ships) {
       translate(b.getPos()[0]+25, b.getPos()[1]+5);
       rotate(b.getHeading());
@@ -94,6 +92,11 @@ void draw() {
       rotate( - (b.getHeading()) );
       translate(-(b.getPos()[0]+25), -(b.getPos()[1]+5));
     }
+    fill(51, 51, 0);
+    rect(500, 0, 200, 500);
+    fill( 255);
+    text( "Turn" + turnCount, 600, 30);
+    text( message, 600, 50);
   }
   if ( gameState.equals("selection")) {
     textFont( loadFont("CourierNewPS-BoldMT-24.vlw") );
@@ -125,7 +128,7 @@ void draw() {
     }
     fill( 255);
     textFont( loadFont("CourierNewPS-BoldMT-20.vlw"));
-    text( "Press A to\n add ships.", 350, 250);
+    text( "Press A to\n add ships.\n\nPress ENTER\n to start\n the game.", 350, 250);
   }
 
   if ( gameState.equals("add")) {
@@ -148,14 +151,7 @@ void draw() {
   }
 }
 
-void game() {
-  message = "Welcome";
 
-  background(0, 200, 244);
-  fill(51, 51, 0);
-  rect(500, 0, 200, 500);
-  fill(256, 256, 256);
-}
 
 void keyPressed() {
   if ( gameState.equals("battle")) {
@@ -184,6 +180,12 @@ void keyPressed() {
       gameState = "add"; 
       temp = 0;
     }
+    if ( key == ENTER || key == RETURN){
+      for (Ship b: _ships){
+        _shipOrder.add(b); 
+      }
+      gameState = "battle"; 
+    }
   }
 
   if ( gameState.equals( "add")) {
@@ -199,8 +201,8 @@ void keyPressed() {
         int(attributes[0]), 
         int(attributes[1]), 
         int(attributes[2]), 
-        int(random(10,500)), 
-        int(random(10,600)), 
+        int(random(20,450)), 
+        int(random(20,650)), 
         int(attributes[3]), 
         int(attributes[4]), 
         Character.getNumericValue(key), classList[temp]) );
