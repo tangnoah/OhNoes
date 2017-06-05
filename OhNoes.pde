@@ -7,7 +7,7 @@ String message = "Welcome";
 float turned = 0;
 float moved = 0;
 ArrayPriorityQueue<Ship> _shipOrder = new ArrayPriorityQueue<Ship>();
-String[] classList = { "Destroyer", "Gunboat" };
+String[] classList = { "Destroyer", "Gunboat", "Cruiser"};
 int temp = 0;
 // null - game not started
 // selection - picking a ship screen
@@ -97,6 +97,7 @@ void mouseClicked() {
   }
 }
 
+//DRAW ======================================= DRAW
 void draw() {
   if ( gameState.equals("battle")) {
     background(0, 200, 244);
@@ -107,9 +108,10 @@ void draw() {
       translate(b.getPos()[0]+25, b.getPos()[1]+5);
       rotate(b.getHeading());
       translate(-25, -5);
-      if ( _shipOrder.peekMin() == b) {
+      if ( _shipOrder.peekMax() == b) { //IS THIS THE CURRENTLY SELECTED SHIP? YES: HILITE IN RED
         fill(#FF0A0A  );
         rect(-4, -4, 58, 18, 2);
+        triangle(57, -4, 57, 15, 65, 5);
       }
       if ( b.getOwner() == 1) {
         fill(100);
@@ -125,7 +127,7 @@ void draw() {
     rect(500, 0, 200, 500);
     fill( 255);
     text( "Turn" + turnCount, 600, 30);
-    text( "Current ship\nPlayer " + _shipOrder.peekMin().getOwner() + "\nClass: " + _shipOrder.peekMin().getDesc(), 600, 110);
+    text( "Current ship\nPlayer " + _shipOrder.peekMax().getOwner() + "\nClass: " + _shipOrder.peekMax().getDesc(), 600, 110);
     text( message, 600, 50);
   }
   if ( gameState.equals("selection")) {
@@ -182,29 +184,29 @@ void draw() {
 }
 
 
-
+//KEYPRESSED ======================================= KEYPRESSED
 void keyPressed() {
   if ( gameState.equals("battle")) {
     if (key == CODED) {
-      if ( keyCode == LEFT && turned <= _shipOrder.peekMin().getTurnRate()) {
-        _shipOrder.peekMin().rotate( -PI/36);
+      if ( keyCode == LEFT && turned <= _shipOrder.peekMax().getTurnRate()) {
+        _shipOrder.peekMax().rotate( -PI/36);
         turned += PI/36;
       }
-      if ( keyCode == RIGHT && turned <= _shipOrder.peekMin().getTurnRate()) {
-        _shipOrder.peekMin().rotate( PI/36);
+      if ( keyCode == RIGHT && turned <= _shipOrder.peekMax().getTurnRate()) {
+        _shipOrder.peekMax().rotate( PI/36);
         turned += PI/36;
       }
-      if ( keyCode == UP && moved <= _shipOrder.peekMin().getSpeed()) {
-        _shipOrder.peekMin().move( 1.5);
+      if ( keyCode == UP && moved <= _shipOrder.peekMax().getSpeed()) {
+        _shipOrder.peekMax().move( 1.5);
         moved += 1;
       }
-      if ( keyCode == DOWN && moved <= _shipOrder.peekMin().getSpeed()) {
-        _shipOrder.peekMin().move( -1.5);
+      if ( keyCode == DOWN && moved <= _shipOrder.peekMax().getSpeed()) {
+        _shipOrder.peekMax().move( -1.5);
         moved += 1;
       }
     }
     if( key == ENTER) {
-      _shipOrder.removeMin();
+      _shipOrder.removeMax();
       if( _shipOrder.isEmpty()){
         for( Ship b: _ships){
           _shipOrder.add(b); 
@@ -212,6 +214,9 @@ void keyPressed() {
       }
       turned = 0;
       moved = 0;
+    }
+    if( key == 'a' || key =='A'){
+      gameState = "attack"; 
     }
   }
 
