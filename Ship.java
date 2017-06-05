@@ -124,4 +124,5 @@ public class Ship implements Comparable {
   public void hit() {
     armor.removeMax();
   }
+  
 }

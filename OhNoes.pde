@@ -18,6 +18,27 @@ void setup() {
   titleF = loadFont("Disparador-Stencil-48.vlw");
   textFont(titleF);
   startGame();
+  /*String[] attributes = loadStrings( "Destroyer-attributes.txt");
+   Ship a = new Ship( 
+        int(attributes[0]), 
+        int(attributes[1]), 
+        int(attributes[2]), 
+        int(random(20, 450)), 
+        int(random(20, 440)), 
+        int(attributes[3]), 
+        int(attributes[4]), 
+         1, "Destroyer");  
+   attributes = loadStrings( "Gunboat-attributes.txt");      
+           Ship b = new Ship( 
+        int(attributes[0]), 
+        int(attributes[1]), 
+        int(attributes[2]), 
+        int(random(20, 450)), 
+        int(random(20, 440)), 
+        int(attributes[3]), 
+        int(attributes[4]), 
+         1, "Destroyer");
+   print(b.compareTo(a)); */
 }
 
 void startGame() {
