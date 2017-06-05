@@ -28,6 +28,7 @@ public class Ship implements Comparable {
     turnRate = tu;
     owner = ow;
     desc = newDesc;
+    armor = new Armor(armorStat);
   }
   //interface compliance
   public int compareTo(Object o){

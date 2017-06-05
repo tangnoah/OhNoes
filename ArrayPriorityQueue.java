@@ -15,7 +15,7 @@ public class ArrayPriorityQueue<T> {
       for (int i = 0; i < PQueue.size(); i++) {
         if (((Comparable)x).compareTo((Comparable)PQueue.get(i)) >= 0) {
           PQueue.add(i, x);
-          break;
+          return;
         }
       }
       PQueue.add(PQueue.size(), x);

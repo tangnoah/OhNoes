@@ -9,6 +9,7 @@ float moved = 0;
 ArrayPriorityQueue<Ship> _shipOrder = new ArrayPriorityQueue<Ship>();
 String[] classList = { "Destroyer", "Gunboat", "Cruiser"};
 int temp = 0;
+int targeted = 0;
 // null - game not started
 // selection - picking a ship screen
 
@@ -20,24 +21,24 @@ void setup() {
   startGame();
   /*String[] attributes = loadStrings( "Destroyer-attributes.txt");
    Ship a = new Ship( 
-        int(attributes[0]), 
-        int(attributes[1]), 
-        int(attributes[2]), 
-        int(random(20, 450)), 
-        int(random(20, 440)), 
-        int(attributes[3]), 
-        int(attributes[4]), 
-         1, "Destroyer");  
+   int(attributes[0]), 
+   int(attributes[1]), 
+   int(attributes[2]), 
+   int(random(20, 450)), 
+   int(random(20, 440)), 
+   int(attributes[3]), 
+   int(attributes[4]), 
+   1, "Destroyer");  
    attributes = loadStrings( "Gunboat-attributes.txt");      
-           Ship b = new Ship( 
-        int(attributes[0]), 
-        int(attributes[1]), 
-        int(attributes[2]), 
-        int(random(20, 450)), 
-        int(random(20, 440)), 
-        int(attributes[3]), 
-        int(attributes[4]), 
-         1, "Destroyer");
+   Ship b = new Ship( 
+   int(attributes[0]), 
+   int(attributes[1]), 
+   int(attributes[2]), 
+   int(random(20, 450)), 
+   int(random(20, 440)), 
+   int(attributes[3]), 
+   int(attributes[4]), 
+   1, "Destroyer");
    print(b.compareTo(a)); */
 }
 
@@ -73,6 +74,9 @@ void helpText() {
 
 
 void mouseClicked() {
+  //debugging:
+  //print (_shipOrder + "\n");
+  //print ("----------------------------\n" + _ships + "\n");
   if (gameState.equals("")) {
     if ( mouseX > 200 && mouseX < 310 && mouseY > 320 && mouseY < 360) {//start game
       background(0, 200, 244);
@@ -108,8 +112,8 @@ void draw() {
       translate(b.getPos()[0]+25, b.getPos()[1]+5);
       rotate(b.getHeading());
       translate(-25, -5);
-      if ( _shipOrder.peekMax() == b) { //IS THIS THE CURRENTLY SELECTED SHIP? YES: HILITE IN RED
-        fill(#FF0A0A  );
+      if ( _shipOrder.peekMax() == b) { //IS THIS THE CURRENTLY SELECTED SHIP? YES: HILITE IN GREEN
+        fill(#34EA28  );
         rect(-4, -4, 58, 18, 2);
         triangle(57, -4, 57, 15, 65, 5);
       }
@@ -128,6 +132,41 @@ void draw() {
     fill( 255);
     text( "Turn" + turnCount, 600, 30);
     text( "Current ship\nPlayer " + _shipOrder.peekMax().getOwner() + "\nClass: " + _shipOrder.peekMax().getDesc(), 600, 110);
+    text( message, 600, 50);
+  }
+  if ( gameState.equals("attack")) {
+    background(0, 200, 244);
+    //ad a new font here
+    fill(100);
+    for ( Ship b : _ships) {
+
+      translate(b.getPos()[0]+25, b.getPos()[1]+5);
+      rotate(b.getHeading());
+      translate(-25, -5);
+      if ( _shipOrder.peekMax() == b) { //IS THIS THE CURRENTLY SELECTED SHIP? YES: HILITE IN GREEN
+        fill(#34EA28  );
+        rect(-4, -4, 58, 18, 2);
+        triangle(57, -4, 57, 15, 65, 5);
+      }
+      if ( _ships.get(targeted) == b) {  //IS THIS THE CURRENTLY TARGETED SHIP? YES: HILITE IN RED
+        fill(#FA1717  );
+        rect(-4, -4, 58, 18, 2);
+      }
+      if ( b.getOwner() == 1) {
+        fill(100);
+      } else if ( b.getOwner() == 2) {
+        fill(50);
+      }
+      rect( 0, 0, 50, 10, 2);
+      translate(25, 5);
+      rotate( - (b.getHeading()) );
+      translate(-(b.getPos()[0]+25), -(b.getPos()[1]+5));
+    }
+    fill(#FA1717  );
+    rect(500, 0, 200, 500);
+    fill( 255);
+    text( "READY TO FIRE", 600, 30);
+    text( "TARGETING:\n" + _ships.get(targeted).getDesc(), 600, 110);
     text( message, 600, 50);
   }
   if ( gameState.equals("selection")) {
@@ -205,18 +244,19 @@ void keyPressed() {
         moved += 1;
       }
     }
-    if( key == ENTER) {
+    if ( key == ENTER || key == RETURN) {
       _shipOrder.removeMax();
-      if( _shipOrder.isEmpty()){
-        for( Ship b: _ships){
-          _shipOrder.add(b); 
+      if ( _shipOrder.isEmpty()) {
+        for ( Ship b : _ships) {
+          _shipOrder.add(b);
         }
       }
       turned = 0;
       moved = 0;
     }
-    if( key == 'a' || key =='A'){
-      gameState = "attack"; 
+    if ( key == 'a' || key =='A') {
+      gameState = "attack";
+      targeted = 0;
     }
   }
 
@@ -226,10 +266,10 @@ void keyPressed() {
       temp = 0;
     }
     if ( key == ENTER || key == RETURN) {
-      for (Ship b : _ships) {
-        _shipOrder.add(b);
-      }
       gameState = "battle";
+      for( Ship b: _ships){
+        _shipOrder.add(b);        
+      }
     }
   }
 
@@ -255,4 +295,35 @@ void keyPressed() {
       gameState = "selection";
     }
   }
+
+  if ( gameState.equals("attack")) {
+    if ( key == CODED && keyCode == RIGHT )
+      if ( targeted < _ships.size() - 1)
+        targeted += 1;
+      else
+        targeted = 0;
+    if ( key == CODED && keyCode == LEFT ) {
+      if ( targeted > 0 )
+        targeted -= 1;
+      else
+        targeted = _ships.size() - 1;
+    }
+    if ( key == ENTER || key == RETURN) {
+      //ATTACK FORMULA HERE
+      _ships.get(targeted).hit();
+      passTurn();
+      gameState = "battle";
+    }
+  }
+}
+
+void passTurn() {
+  _shipOrder.removeMax();
+  if ( _shipOrder.isEmpty()) {
+    for ( Ship b : _ships) {
+      _shipOrder.add(b);
+    }
+  }
+  turned = 0;
+  moved = 0;
 }
