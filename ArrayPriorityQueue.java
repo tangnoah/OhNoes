@@ -9,11 +9,11 @@ public class ArrayPriorityQueue<T> {
     }
 
     public void add (T x){
-	if (isEmpty() ||((Comparable)x).compareTo((Comparable)PQueue.get(PQueue.size() - 1)) < 0){
+	if (isEmpty() ||((Comparable)x).compareTo((Comparable)PQueue.get(PQueue.size() - 1)) > 0){
 	    PQueue.add(x);
 	}
 	else{
-	    for (int i = 0; i < PQueue.size(); i++){
+	    for (int i = PQueue.size() - 1; i > 0; i--){
 		if (((Comparable)x).compareTo((Comparable)PQueue.get(i)) >= 0){
 		    PQueue.add(i, x);
 		    break;
