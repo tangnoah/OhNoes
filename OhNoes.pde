@@ -12,6 +12,7 @@ int temp = 0;
 int targeted = 0;
 // null - game not started
 // selection - picking a ship screen
+int[] points = {0, 0};
 
 void setup() {
   background(0, 200, 244); 
@@ -139,6 +140,31 @@ void draw() {
     text( "Turn" + turnCount, 600, 30);
     text( "Current ship\nPlayer " + _shipOrder.peekMax().getOwner() + "\nClass: " + _shipOrder.peekMax().getDesc(), 600, 110);
     text( message, 600, 50);
+    if( _ships.size() <= 1){
+      gameState = "end";
+    }
+  }
+  if ( gameState.equals("end")){
+    image( loadImage("im1.png"), 0, 0); 
+    fill(#FF1717);
+    textFont( loadFont("BalloonistSFBold-80.vlw") );
+    textSize(60);
+    if( points[0] > points[1]){
+      text( "PLAYER 1 VICTORY", 350, 60);
+      text( "P1\n" + points[0], 100, 150);
+      text( "P2\n" + points[1], 600, 150);
+    }
+    else if( points[0] > points[1]){
+      text( "PLAYER 2 VICTORY", 350, 60); 
+      text( "P1\n" + points[0], 100, 150);
+      text( "P2\n" + points[1], 600, 150);
+    }
+    else{
+      text( "DRAW", 350, 60); 
+      text( "P1\n" + points[0], 100, 150);
+      text( "P2\n" + points[1], 600, 150);
+    }
+    
   }
   if ( gameState.equals("attack")) {
     background(0, 200, 244);
@@ -312,6 +338,7 @@ void keyPressed() {
         int(random(20, 440)), 
         int(attributes[3]), 
         int(attributes[4]), 
+        int(attributes[5]),
         Character.getNumericValue(key), classList[temp]) );
       temp = 0;
       gameState = "selection";
@@ -338,6 +365,7 @@ void keyPressed() {
       //ATTACK FORMULA HERE
       _ships.get(targeted).hit();
       if (!(_ships.get(targeted).alive()) ) {
+        points[_ships.get(targeted).getOwner() % 2] += _ships.get(targeted).getValue();
         gameState = "shipSunk";
       } else {
         passTurn();

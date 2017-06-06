@@ -11,13 +11,14 @@ public class Ship implements Comparable {
   private float turnRate;
   private int owner;
   private String desc;
+  private int value;
 
   //constructor
   public Ship() {
     Armor armor = new Armor();
   }
 
-  public Ship( int atS, int arS, int spS, float xP, float yP, float he, float tu, int ow, String newDesc) {
+  public Ship( int atS, int arS, int spS, float xP, float yP, float he, float tu, int newValue, int ow, String newDesc ) {
     this();
     attackStat = atS;
     armorStat = arS;
@@ -29,6 +30,7 @@ public class Ship implements Comparable {
     owner = ow;
     desc = newDesc;
     armor = new Armor(armorStat);
+    value = newValue;
   }
   //interface compliance
   public int compareTo(Object o){
@@ -70,6 +72,9 @@ public class Ship implements Comparable {
   }
   public int getOwner(){
     return owner;    
+  }
+  public int getValue(){
+    return value;
   }
 
   //modifiers
