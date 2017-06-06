@@ -47,7 +47,7 @@ public class Ship implements Comparable {
   }
   public boolean alive() {
     //if your armor is gone and the root is null, then you ded.
-    return armor.size() >= 0;
+    return armor.size() > 0;
   }
   public int getAttack() {
     return attackStat;

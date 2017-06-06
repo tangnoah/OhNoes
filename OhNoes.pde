@@ -175,14 +175,12 @@ void draw() {
     text( "TARGETING:\n" + _ships.get(targeted).getDesc(), 600, 110);
     text( message, 600, 50);
   }
-  
-  if ( gameState.equals(" shipSunk")){
+
+  if ( gameState.equals("shipSunk")) {
     image( loadImage("shipSmoking.png"), 0, 0);
-    _ships.remove( targeted);
-    
-    
-    
-    
+    fill( 0);
+    textSize(20);
+    text( "Player " + _ships.get(targeted).getOwner() + "'s " + _ships.get(targeted).getDesc()  + " has been sunk!", 350, 40);
   }
   if ( gameState.equals("selection")) {
     textFont( loadFont("CourierNewPS-BoldMT-24.vlw") );
@@ -260,14 +258,7 @@ void keyPressed() {
       }
     }
     if ( key == ENTER || key == RETURN) {
-      _shipOrder.removeMax();
-      if ( _shipOrder.isEmpty()) {
-        for ( Ship b : _ships) {
-          _shipOrder.add(b);
-        }
-      }
-      turned = 0;
-      moved = 0;
+      passTurn();
     }
     if ( key == 'a' || key =='A') {
       gameState = "attack";
@@ -284,10 +275,11 @@ void keyPressed() {
     textSize(20);
     gameState = "battle";
   }
-  
-  if (gameState.equals("shipSunk")){
+
+  if (gameState.equals("shipSunk")) {
     textSize(20);
     gameState = "battle";
+    _ships.remove( targeted);
   }
 
   if ( gameState.equals( "selection")) {
@@ -345,10 +337,9 @@ void keyPressed() {
     if ( key == ENTER || key == RETURN) {
       //ATTACK FORMULA HERE
       _ships.get(targeted).hit();
-      if (!(_ships.get(targeted).alive()) ){
+      if (!(_ships.get(targeted).alive()) ) {
         gameState = "shipSunk";
-      }
-      else{
+      } else {
         passTurn();
         gameState = "battle";
       }
