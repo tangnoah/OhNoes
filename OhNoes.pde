@@ -68,8 +68,7 @@ void startButtons() {
 
 void helpText() {
   fill(0);
-  textSize(36);
-  text("On Your Turn: \n \n 1. Move your ships using the arrow keys. You only get one turn and one move per ship. \n 2. Select a ship to attack by clicking and pray to RNGesus. Shoot with SPACE. \n 3. Wait for your turn again and reread these instructions if needed.", 350, 150);
+  text("On Your Turn: \n \n 1. Move your ships using the arrow keys. You can rotate and move within \ncertain limits determined by your ship's class. \n 2. Attack by pressing A and choosing a target with left/right arrows. Shoot with ENTER. \n 3. Wait for your turn again and reread these instructions if needed.", 350, 150);
 }
 
 
@@ -77,6 +76,9 @@ void mouseClicked() {
   //debugging:
   //print (_shipOrder + "\n");
   //print ("----------------------------\n" + _ships + "\n");
+  if (gameState.equals("help")) {
+    gameState = "battle";
+  }
   if (gameState.equals("")) {
     if ( mouseX > 200 && mouseX < 310 && mouseY > 320 && mouseY < 360) {//start game
       background(0, 200, 244);
@@ -86,6 +88,7 @@ void mouseClicked() {
     if ( mouseX > 390 && mouseX < 500 && mouseY > 320 && mouseY < 360) {//help menu
       background(0, 200, 244);
       text("HELP", 350, 100);
+      textSize(36);
       helpText();
       fill(150);
       rect(295, 320, 110, 40);
@@ -258,6 +261,18 @@ void keyPressed() {
       gameState = "attack";
       targeted = 0;
     }
+    if ( key == 'h' || key == 'H') {
+      gameState = "help";
+      fill( #228314);
+      rect( 0, 0, 700, 500);
+      textSize(12);
+      helpText();
+    }
+  }
+
+  else if (gameState.equals("help")) {
+    textSize(20);
+    gameState = "battle";
   }
 
   if ( gameState.equals( "selection")) {
@@ -267,8 +282,8 @@ void keyPressed() {
     }
     if ( key == ENTER || key == RETURN) {
       gameState = "battle";
-      for( Ship b: _ships){
-        _shipOrder.add(b);        
+      for ( Ship b : _ships) {
+        _shipOrder.add(b);
       }
     }
   }
