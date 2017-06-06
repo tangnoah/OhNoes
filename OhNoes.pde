@@ -79,6 +79,9 @@ void mouseClicked() {
   if (gameState.equals("help")) {
     gameState = "battle";
   }
+  if (gameState.equals("shipSunk")) {
+    gameState = "battle";
+  }
   if (gameState.equals("")) {
     if ( mouseX > 200 && mouseX < 310 && mouseY > 320 && mouseY < 360) {//start game
       background(0, 200, 244);
@@ -171,6 +174,15 @@ void draw() {
     text( "READY TO FIRE", 600, 30);
     text( "TARGETING:\n" + _ships.get(targeted).getDesc(), 600, 110);
     text( message, 600, 50);
+  }
+  
+  if ( gameState.equals(" shipSunk")){
+    image( loadImage("shipSmoking.png"), 0, 0);
+    _ships.remove( targeted);
+    
+    
+    
+    
   }
   if ( gameState.equals("selection")) {
     textFont( loadFont("CourierNewPS-BoldMT-24.vlw") );
@@ -268,9 +280,12 @@ void keyPressed() {
       textSize(12);
       helpText();
     }
+  } else if (gameState.equals("help")) {
+    textSize(20);
+    gameState = "battle";
   }
-
-  else if (gameState.equals("help")) {
+  
+  if (gameState.equals("shipSunk")){
     textSize(20);
     gameState = "battle";
   }
@@ -323,11 +338,20 @@ void keyPressed() {
       else
         targeted = _ships.size() - 1;
     }
+    if ( key == 'c' || key == 'C') {
+      //CANCEL FIRE
+      gameState = "battle";
+    }
     if ( key == ENTER || key == RETURN) {
       //ATTACK FORMULA HERE
       _ships.get(targeted).hit();
-      passTurn();
-      gameState = "battle";
+      if (!(_ships.get(targeted).alive()) ){
+        gameState = "shipSunk";
+      }
+      else{
+        passTurn();
+        gameState = "battle";
+      }
     }
   }
 }
