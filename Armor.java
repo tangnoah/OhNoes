@@ -39,7 +39,22 @@ public class Armor {
     public int peek(){
 	return _armor.get(_armor.size());
     }
-    public void removeMax(){
+    public String removeMax(){
 	_armor.removeMax();
+	if(! _armor.levelAlive(3)){
+	    return "guns";
+	}
+	else if(! _armor.levelAlive(2)){
+	    return "ammo";
+	}
+	else if(! _armor.levelAlive(1)){
+	    return "engines";
+	}
+	else if(! _armor.levelAlive(0)){
+	    return "captain";
+	}
+	else{
+	    return "";
+	}
     }
 }
