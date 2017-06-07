@@ -4,4 +4,4 @@
 0
 1
 900
-BATTESHIP:|The battleship is the| undisputed king of the| high seas. Its lineage| dates back centuries and| its goal is to bring as| much explosive firepower| to the field as possible.
+BATTLESHIP:|The battleship is the| undisputed king of the| high seas. Its lineage| dates back centuries and| its goal is to bring as| much explosive firepower| to the field as possible.

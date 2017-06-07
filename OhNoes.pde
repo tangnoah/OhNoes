@@ -112,7 +112,6 @@ void mouseClicked() {
 void draw() {
   if ( gameState.equals("battle")) {
     background(0, 200, 244);
-    //ad a new font here
     fill(100);
     for ( Ship b : _ships) {
 
@@ -150,9 +149,9 @@ void draw() {
     fill(#FF1717);
     textFont( loadFont("BalloonistSFBold-80.vlw") );
     textSize(60);
-    for( Ship b: _ships){
-      if( b.getDesc().equals("Liner") ){
-        points[b.getOwner() - 1] += 500; 
+    for ( Ship b : _ships) {
+      if ( b.getDesc().equals("Liner") ) {
+        points[b.getOwner() - 1] += 500;
       }
     }
     _ships = new ArrayList<Ship>();
@@ -296,10 +295,10 @@ void keyPressed() {
       passTurn();
     }
     if ( key == 'a' || key =='A') {
-      if(Ship.working()){
-      gameState = "attack";
-      targeted = 0;
-      }
+     // if (Ship.working()[3]==1) {
+        gameState = "attack";
+        targeted = 0;
+      //}
     }
     if ( key == 'h' || key == 'H') {
       gameState = "help";
@@ -395,10 +394,12 @@ void keyPressed() {
         }
         if ( random(100) <= _shipOrder.peekMax().getAttack() ) {
           result = _ships.get(targeted).hit();
-          if (result.equals("guns")){
-            message += "" + _ships.get(targeted).getDesc() + "'s guns disabled!\n";}
-          if (result.equals("engines")){
-            message += "" + _ships.get(targeted).getDesc() + "'s engines disabled!\n";}
+          if (result.equals("guns")) {
+            message += "" + _ships.get(targeted).getDesc() + "'s guns disabled!\n";
+          }
+          if (result.equals("engines")) {
+            message += "" + _ships.get(targeted).getDesc() + "'s engines disabled!\n";
+          }
           totalHits += 1;
         }
       }
