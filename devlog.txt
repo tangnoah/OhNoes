@@ -56,6 +56,9 @@ ___________
 Noah:: Continued driver work
 Alessandro:: Added Help instructions
 
+___________
+2017-06-06 |
+==========='
 
-
+Maria:: Updated Ship and Armor classes, added comments for clarity.
 
