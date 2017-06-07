@@ -155,6 +155,7 @@ void draw() {
         points[b.getOwner() - 1] += 500; 
       }
     }
+    _ships = new ArrayList<Ship>();
     if ( points[0] > points[1]) {
       text( "PLAYER 1 VICTORY", 350, 60);
       text( "P1\n" + points[0], 100, 150);
