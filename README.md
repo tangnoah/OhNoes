@@ -62,3 +62,8 @@ When the game is finished, how well you did is seen on a leaderboard.  This lead
 
 The ability to play a full game against another person at the computer. Ships will have properties selected from a set of pre-programmed options.  Turn based.  You will choose what ship you want to hit with your weapons, and the damage dealt would be determined by your attack stat.  An accuracy mechanism will not be implemented in the first version.
 
+### Credits
+
+Images:
+https://www.archives.gov/research/military/ww2/photos
+https://thenounproject.com/term/canoe/26512/
