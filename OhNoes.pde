@@ -294,7 +294,7 @@ void keyPressed() {
       passTurn();
     }
     if ( key == 'a' || key =='A') {
-     if (_shipOrder.peekMax().working()[0]==1) {
+     if (_shipOrder.peekMax().working()[0]==1 || _shipOrder.peekMax().getDesc().equals("Canoe")) {
         gameState = "attack";
         targeted = 0;
       }
