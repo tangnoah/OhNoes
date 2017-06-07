@@ -139,7 +139,8 @@ void draw() {
     fill( 255);
     text( "Turn" + turnCount, 600, 30);
     text( "Current ship\nPlayer " + _shipOrder.peekMax().getOwner() + "\nClass: " + _shipOrder.peekMax().getDesc(), 600, 110);
-    text( message, 600, 50);
+    fill( 0);
+    text( message, 250, 20);
     if ( _ships.size() <= 1) {
       gameState = "end";
     }
@@ -196,7 +197,6 @@ void draw() {
     fill( 255);
     text( "READY TO FIRE", 600, 30);
     text( "TARGETING:\n" + _ships.get(targeted).getDesc(), 600, 110);
-    text( message, 600, 50);
   }
 
   if ( gameState.equals("shipSunk")) {
@@ -363,24 +363,32 @@ void keyPressed() {
       gameState = "battle";
     }
     if ( key == ENTER || key == RETURN) {
+      message = "";
       //ATTACK FORMULA HERE
+      String result = "";
       print (int(sqrt( sq(_shipOrder.peekMax().getPos()[0] - _ships.get(targeted).getPos()[0]) + sq(_shipOrder.peekMax().getPos()[1] - _ships.get(targeted).getPos()[1]) ) ) + "\n");
       print (_ships.get(targeted).armor.size() + "\n");
+      int totalHits = 0;
       for ( float hits = 100; 
         hits > sqrt( sq(_shipOrder.peekMax().getPos()[0] - _ships.get(targeted).getPos()[0])
         + sq(_shipOrder.peekMax().getPos()[1] - _ships.get(targeted).getPos()[1]) ); 
         hits -= 1) {
-        
+
         if (!(_ships.get(targeted).alive()) ) {
           points[_ships.get(targeted).getOwner() % 2] += _ships.get(targeted).getValue();
           gameState = "shipSunk";
           return;
         }
-        if ( random(100) <= _shipOrder.peekMax().getAttack() ){
-          _ships.get(targeted).hit();
-          print ("DING\n");
+        if ( random(100) <= _shipOrder.peekMax().getAttack() ) {
+          result = _ships.get(targeted).hit();
+          if (result.equals("guns")){
+            message += "\n" + _ships.get(targeted).getDesc() + "'s guns disabled!";}
+          if (result.equals("engines")){
+            message += "\n" + _ships.get(targeted).getDesc() + "'s engines disabled!";}
+          totalHits += 1;
         }
       }
+      message += _ships.get(targeted).getDesc() + " received " + totalHits + " hits from " + _shipOrder.peekMax().getDesc() + "!";
       passTurn();
       gameState = "battle";
     }

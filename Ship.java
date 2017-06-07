@@ -107,7 +107,8 @@ public class Ship implements Comparable {
     return false;
   }
   //change heading
-  public float rotate( float degrees) {
+  public float rotate( float degrees) {  //check whats working by calling working in armor
+    if ( working()[2] == 1 ){
     if ( Math.abs(degrees) <= turnRate) {
       heading += degrees;
     } else if ( degrees < 0) {
@@ -115,20 +116,28 @@ public class Ship implements Comparable {
     } else if ( degrees > 0) {
       heading += turnRate;
     }
+    }
     return heading;
+    
   }
 
   //move
   public void move( float units ) {
+    if ( working()[2] == 1 ){
     if ( Math.abs(units) <= speedStat) { 
       x += ( Math.cos(heading) * units ); 
       y += ( Math.sin(heading) * units );
     }
+    }
   }
 
+  //status report
+  public int[] working(){
+    return armor.working(); 
+  }
   //if you are hit you remove a node of your armor.
-  public void hit() {
-    armor.removeMax();
+  public String hit() {
+    return armor.removeMax();
   }
   
 }

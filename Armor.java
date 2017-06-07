@@ -26,7 +26,7 @@ public class Armor {
   //Tells whether or not a certain level exists.
   public boolean levelAlive(int lvl) {
     if ( _armor.size() > 0)
-    return lvl <= _armor.get(_armor.size()-1);
+    return lvl - 1 <= _armor.get(_armor.size()-1);
     else
       return false;
   }
@@ -43,17 +43,29 @@ public class Armor {
     return _armor.get(_armor.size());
   }
   public String removeMax() {
+    String ret = "";
     _armor.removeMax();
-    if (! levelAlive(3)) {
-      return "guns";
-    } else if (! levelAlive(2)) {
-      return "ammo";
-    } else if (! levelAlive(1)) {
-      return "engines";
-    } else if (! levelAlive(0)) {
-      return "captain";
-    } else {
-      return "";
+    if (! levelAlive(3) && _armor.get(_armor.size() -1) == 2 ) {
+      ret = "guns";
+    } else if (! levelAlive(2) && _armor.get(_armor.size() -1) == 1) {
+      ret = "ammo";
+    } else if (! levelAlive(1) && _armor.get(_armor.size() -1) == 0) {
+      ret = "engines";
     }
+     else {
+      ret = "";
+    }
+    return ret;
+  }
+  public int[] working(){
+    int[] works = {0, 0, 0};
+    if ( levelAlive(3)) {
+      works[0] = 1;
+    } if ( levelAlive(2)) {
+       works[1] = 1;
+    } if ( levelAlive(1)) {
+       works[2] = 1;
+    }
+    return works;
   }
 }
