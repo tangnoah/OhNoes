@@ -7,7 +7,7 @@ String message = "Welcome";
 float turned = 0;
 float moved = 0;
 ArrayPriorityQueue<Ship> _shipOrder = new ArrayPriorityQueue<Ship>();
-String[] classList = { "Destroyer", "Gunboat", "Cruiser", "Battleship", "Liner"};
+String[] classList = { "Destroyer", "Gunboat", "Cruiser", "Battleship", "Liner", "Canoe"};
 int temp = 0;
 int targeted = 0;
 // null - game not started
@@ -69,7 +69,7 @@ void startButtons() {
 
 void helpText() {
   fill(0);
-  text("On Your Turn: \n \n 1. Move your ships using the arrow keys. You can rotate and move within \ncertain limits determined by your ship's class. \n 2. Attack by pressing A and choosing a target with left/right arrows. Shoot with ENTER. Cancel the attack with 'c' \n 3. Surrender by pressing 's'. Surrendering will cost you 1500 points. \n 4.Wait for your turn again and reread these instructions if needed.", 350, 150);
+  text("On Your Turn: \n \n 1. Move your ships using the arrow keys. You can rotate and move within \ncertain limits determined by your ship's class. \n 2. Attack by pressing A and choosing a target with left/right arrows. \n Shoot with ENTER. Cancel the attack with 'c' \n 3. Surrender by pressing 's'. Surrendering will cost you 1500 points. \n 4.Wait for your turn again and show/hide these instructions if needed by pressing H.", 350, 150);
 }
 
 
@@ -295,8 +295,10 @@ void keyPressed() {
       passTurn();
     }
     if ( key == 'a' || key =='A') {
+      if(Ship.working()){
       gameState = "attack";
       targeted = 0;
+      }
     }
     if ( key == 'h' || key == 'H') {
       gameState = "help";

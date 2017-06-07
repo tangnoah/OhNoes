@@ -33,19 +33,20 @@ public class Ship implements Comparable {
     value = newValue;
   }
   //interface compliance
-  public int compareTo(Object o){
+  public int compareTo(Object o) {
     Ship s = (Ship) o;
-    if ( s.getSpeed() > speedStat){
-      return -1;}
-    else if( s.getSpeed() < speedStat){
-      return 1;}
-    else{
-      return 0;}
+    if ( s.getSpeed() > speedStat) {
+      return -1;
+    } else if ( s.getSpeed() < speedStat) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
-  
+
   //Accessors
-  public String getDesc(){
-   return desc; 
+  public String getDesc() {
+    return desc;
   }
   public boolean alive() {
     //if your armor is gone and the root is null, then you ded.
@@ -70,18 +71,18 @@ public class Ship implements Comparable {
   public float getTurnRate() {
     return turnRate;
   }
-  public int getOwner(){
-    return owner;    
+  public int getOwner() {
+    return owner;
   }
-  public int getValue(){
+  public int getValue() {
     return value;
   }
 
   //modifiers
-  public String setDesc( String newDesc){
-   String temp = desc;
-   desc = newDesc;
-   return temp;
+  public String setDesc( String newDesc) {
+    String temp = desc;
+    desc = newDesc;
+    return temp;
   }
   public int setAttack(int newAttack) {
     int temp = getAttack();
@@ -108,36 +109,34 @@ public class Ship implements Comparable {
   }
   //change heading
   public float rotate( float degrees) {  //check whats working by calling working in armor
-    if ( working()[2] == 1 ){
-    if ( Math.abs(degrees) <= turnRate) {
-      heading += degrees;
-    } else if ( degrees < 0) {
-      heading -= turnRate;
-    } else if ( degrees > 0) {
-      heading += turnRate;
-    }
+    if ( working()[2] == 1 ) {
+      if ( Math.abs(degrees) <= turnRate) {
+        heading += degrees;
+      } else if ( degrees < 0) {
+        heading -= turnRate;
+      } else if ( degrees > 0) {
+        heading += turnRate;
+      }
     }
     return heading;
-    
   }
 
   //move
   public void move( float units ) {
-    if ( working()[2] == 1 ){
-    if ( Math.abs(units) <= speedStat) { 
-      x += ( Math.cos(heading) * units ); 
-      y += ( Math.sin(heading) * units );
-    }
+    if ( working()[2] == 1 ) {
+      if ( Math.abs(units) <= speedStat) { 
+        x += ( Math.cos(heading) * units ); 
+        y += ( Math.sin(heading) * units );
+      }
     }
   }
 
   //status report
-  public int[] working(){
-    return armor.working(); 
+  public int[] working() {
+    return armor.working();
   }
   //if you are hit you remove a node of your armor.
   public String hit() {
     return armor.removeMax();
   }
-  
 }

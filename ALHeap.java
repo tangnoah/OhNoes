@@ -29,12 +29,11 @@ public class ALHeap
     } else {
       int height = 1;
       for ( int i = 1; i <= _heap.size(); i*=2) {
-        
       }
       return height;
-      }
     }
-  
+  }
+
 
 
   /*****************************************************
@@ -113,5 +112,4 @@ public class ALHeap
   {
     _heap.set( pos1, _heap.set( pos2, _heap.get(pos1) ) );
   }
-    
 }//end class ALHeap
