@@ -382,9 +382,9 @@ void keyPressed() {
         if ( random(100) <= _shipOrder.peekMax().getAttack() ) {
           result = _ships.get(targeted).hit();
           if (result.equals("guns")){
-            message += "\n" + _ships.get(targeted).getDesc() + "'s guns disabled!";}
+            message += "" + _ships.get(targeted).getDesc() + "'s guns disabled!\n";}
           if (result.equals("engines")){
-            message += "\n" + _ships.get(targeted).getDesc() + "'s engines disabled!";}
+            message += "" + _ships.get(targeted).getDesc() + "'s engines disabled!\n";}
           totalHits += 1;
         }
       }

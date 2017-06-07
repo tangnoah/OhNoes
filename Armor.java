@@ -44,12 +44,13 @@ public class Armor {
   }
   public String removeMax() {
     String ret = "";
+    int end = _armor.get(_armor.size()-1);
     _armor.removeMax();
-    if (! levelAlive(3) && _armor.size() > 0 &&_armor.get(_armor.size() -1) == 2 ) {
+    if (!levelAlive(4) && _armor.size() > 0 && end == 3 ) {
       ret = "guns";
-    } else if (! levelAlive(2) && _armor.size() > 0 && _armor.get(_armor.size() -1) == 1) {
+    } else if (!levelAlive(3) && _armor.size() > 0 && end == 2) {
       ret = "ammo";
-    } else if (! levelAlive(1) && _armor.size() > 0 && _armor.get(_armor.size() -1) == 0) {
+    } else if (!levelAlive(2) && _armor.size() > 0 && end == 1) {
       ret = "engines";
     }
      else {
@@ -59,11 +60,11 @@ public class Armor {
   }
   public int[] working(){
     int[] works = {0, 0, 0};
-    if ( levelAlive(3)) {
+    if ( levelAlive(4)) {
       works[0] = 1;
-    } if ( levelAlive(2)) {
+    } if ( levelAlive(3)) {
        works[1] = 1;
-    } if ( levelAlive(1)) {
+    } if ( levelAlive(2)) {
        works[2] = 1;
     }
     return works;
