@@ -45,10 +45,6 @@ public class ALHeap
    *****************************************************/
   public String toString() 
   { 
-    //simple version:
-    //return _heap.toString(); 
-
-    //prettier version:
     String lvlOrdTrav = "heap size " + _heap.size() + "\n";
 
     if ( _heap.size() == 0 ) return lvlOrdTrav;
@@ -62,7 +58,7 @@ public class ALHeap
       }
     }
     return lvlOrdTrav;
-  }//O(n)
+  }
 
 
 
@@ -73,7 +69,7 @@ public class ALHeap
   public boolean isEmpty() 
   { 
     return _heap.isEmpty();
-  } //O(1)
+  }
 
 
 
@@ -106,7 +102,7 @@ public class ALHeap
     }
   } 
 
-  //Sole purpose is for final project, purpose is to remove the maximum value in a heap (since we are working with levels, this will always work.
+  //Sole purpose is for final project, purpose is to remove the maximum value in a heap (since we are working with levels, this will always work.)
 
   public void removeMax() {
     _heap.remove(_heap.size()-1);
@@ -117,5 +113,5 @@ public class ALHeap
   {
     _heap.set( pos1, _heap.set( pos2, _heap.get(pos1) ) );
   }
-  //********************************************
+    
 }//end class ALHeap
