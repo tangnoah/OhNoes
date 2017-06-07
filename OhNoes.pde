@@ -7,7 +7,7 @@ String message = "Welcome";
 float turned = 0;
 float moved = 0;
 ArrayPriorityQueue<Ship> _shipOrder = new ArrayPriorityQueue<Ship>();
-String[] classList = { "Destroyer", "Gunboat", "Cruiser"};
+String[] classList = { "Destroyer", "Gunboat", "Cruiser", "Battleship", "Liner"};
 int temp = 0;
 int targeted = 0;
 // null - game not started
@@ -150,11 +150,16 @@ void draw() {
     fill(#FF1717);
     textFont( loadFont("BalloonistSFBold-80.vlw") );
     textSize(60);
+    for( Ship b: _ships){
+      if( b.getDesc().equals("Liner") ){
+        points[b.getOwner() - 1] += 500; 
+      }
+    }
     if ( points[0] > points[1]) {
       text( "PLAYER 1 VICTORY", 350, 60);
       text( "P1\n" + points[0], 100, 150);
       text( "P2\n" + points[1], 600, 150);
-    } else if ( points[0] > points[1]) {
+    } else if ( points[0] < points[1]) {
       text( "PLAYER 2 VICTORY", 350, 60); 
       text( "P1\n" + points[0], 100, 150);
       text( "P2\n" + points[1], 600, 150);
