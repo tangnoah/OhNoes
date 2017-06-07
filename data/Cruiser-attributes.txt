@@ -4,3 +4,4 @@
 0
 1.0
 600
+CRUISER:|The cruiser is a large and| heavily armed and armored| warship. Though less| powerful than the battleship|it still makes for an| excellent capital ship.

@@ -253,7 +253,13 @@ void draw() {
     image( loadImage( classList[temp] + ".png"), 410, 80);
     fill( 0);
     text( classList[temp], 530, 100);
+    String[] attributes = loadStrings( classList[temp] + "-attributes.txt");
+    textSize(18);
     fill(255);
+    String summary = attributes[6];
+    summary = summary.replace("|", "\n");
+    text( summary, 540, 200);
+    textSize(14);
     text( "Press 1 to add to Player 1's group\nand 2 to add to Player 2's group.", 540, 400);
   }
 }

@@ -4,3 +4,4 @@
 0
 3.14159265359
 50
+GUNBOAT:|The gunboat is a small armed| vessel perfect for assisting| larger fleets and serving| defensively. A gunboat is| cheap and its loss is far| less devastating| than that| of a larger vessel.
