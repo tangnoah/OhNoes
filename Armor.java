@@ -45,11 +45,11 @@ public class Armor {
   public String removeMax() {
     String ret = "";
     _armor.removeMax();
-    if (! levelAlive(3) && _armor.get(_armor.size() -1) == 2 ) {
+    if (! levelAlive(3) && _armor.size() > 0 &&_armor.get(_armor.size() -1) == 2 ) {
       ret = "guns";
-    } else if (! levelAlive(2) && _armor.get(_armor.size() -1) == 1) {
+    } else if (! levelAlive(2) && _armor.size() > 0 && _armor.get(_armor.size() -1) == 1) {
       ret = "ammo";
-    } else if (! levelAlive(1) && _armor.get(_armor.size() -1) == 0) {
+    } else if (! levelAlive(1) && _armor.size() > 0 && _armor.get(_armor.size() -1) == 0) {
       ret = "engines";
     }
      else {
