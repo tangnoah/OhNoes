@@ -295,10 +295,10 @@ void keyPressed() {
       passTurn();
     }
     if ( key == 'a' || key =='A') {
-     // if (Ship.working()[3]==1) {
+     if (_shipOrder.peekMax().working()[0]==1) {
         gameState = "attack";
         targeted = 0;
-      //}
+      }
     }
     if ( key == 'h' || key == 'H') {
       gameState = "help";
