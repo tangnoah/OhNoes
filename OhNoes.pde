@@ -69,7 +69,7 @@ void startButtons() {
 
 void helpText() {
   fill(0);
-  text("On Your Turn: \n \n 1. Move your ships using the arrow keys. You can rotate and move within \ncertain limits determined by your ship's class. \n 2. Attack by pressing A and choosing a target with left/right arrows. Shoot with ENTER. \n 3. Wait for your turn again and reread these instructions if needed.", 350, 150);
+  text("On Your Turn: \n \n 1. Move your ships using the arrow keys. You can rotate and move within \ncertain limits determined by your ship's class. \n 2. Attack by pressing A and choosing a target with left/right arrows. Shoot with ENTER. Cancel the attack with 'c' \n 3. Surrender by pressing 's'. Surrendering will cost you 1500 points. \n 4.Wait for your turn again and reread these instructions if needed.", 350, 150);
 }
 
 
@@ -140,31 +140,28 @@ void draw() {
     text( "Turn" + turnCount, 600, 30);
     text( "Current ship\nPlayer " + _shipOrder.peekMax().getOwner() + "\nClass: " + _shipOrder.peekMax().getDesc(), 600, 110);
     text( message, 600, 50);
-    if( _ships.size() <= 1){
+    if ( _ships.size() <= 1) {
       gameState = "end";
     }
   }
-  if ( gameState.equals("end")){
+  if ( gameState.equals("end")) {
     image( loadImage("im1.png"), 0, 0); 
     fill(#FF1717);
     textFont( loadFont("BalloonistSFBold-80.vlw") );
     textSize(60);
-    if( points[0] > points[1]){
+    if ( points[0] > points[1]) {
       text( "PLAYER 1 VICTORY", 350, 60);
       text( "P1\n" + points[0], 100, 150);
       text( "P2\n" + points[1], 600, 150);
-    }
-    else if( points[0] > points[1]){
+    } else if ( points[0] > points[1]) {
       text( "PLAYER 2 VICTORY", 350, 60); 
       text( "P1\n" + points[0], 100, 150);
       text( "P2\n" + points[1], 600, 150);
-    }
-    else{
+    } else {
       text( "DRAW", 350, 60); 
       text( "P1\n" + points[0], 100, 150);
       text( "P2\n" + points[1], 600, 150);
     }
-    
   }
   if ( gameState.equals("attack")) {
     background(0, 200, 244);
@@ -212,8 +209,8 @@ void draw() {
     textFont( loadFont("CourierNewPS-BoldMT-24.vlw") );
     background(51, 51, 0);
     fill(255);
-    text("Player One", 550, 25 );
-    text("Player Two", 150, 25 );
+    text("Player Two", 550, 25 );
+    text("Player One", 150, 25 );
     fill(0);
     rect(440, 40, 220, 420);
     rect(40, 40, 220, 420);
@@ -297,6 +294,10 @@ void keyPressed() {
       textSize(12);
       helpText();
     }
+    if ( key == 's' || key == 'S') {
+      points[_shipOrder.peekMax().getOwner() - 1] -= 1500;
+      gameState = "end";
+    }
   } else if (gameState.equals("help")) {
     textSize(20);
     gameState = "battle";
@@ -338,7 +339,7 @@ void keyPressed() {
         int(random(20, 440)), 
         int(attributes[3]), 
         int(attributes[4]), 
-        int(attributes[5]),
+        int(attributes[5]), 
         Character.getNumericValue(key), classList[temp]) );
       temp = 0;
       gameState = "selection";
@@ -363,14 +364,25 @@ void keyPressed() {
     }
     if ( key == ENTER || key == RETURN) {
       //ATTACK FORMULA HERE
-      _ships.get(targeted).hit();
-      if (!(_ships.get(targeted).alive()) ) {
-        points[_ships.get(targeted).getOwner() % 2] += _ships.get(targeted).getValue();
-        gameState = "shipSunk";
-      } else {
-        passTurn();
-        gameState = "battle";
+      print (int(sqrt( sq(_shipOrder.peekMax().getPos()[0] - _ships.get(targeted).getPos()[0]) + sq(_shipOrder.peekMax().getPos()[1] - _ships.get(targeted).getPos()[1]) ) ) + "\n");
+      print (_ships.get(targeted).armor.size() + "\n");
+      for ( float hits = 100; 
+        hits > sqrt( sq(_shipOrder.peekMax().getPos()[0] - _ships.get(targeted).getPos()[0])
+        + sq(_shipOrder.peekMax().getPos()[1] - _ships.get(targeted).getPos()[1]) ); 
+        hits -= 1) {
+        
+        if (!(_ships.get(targeted).alive()) ) {
+          points[_ships.get(targeted).getOwner() % 2] += _ships.get(targeted).getValue();
+          gameState = "shipSunk";
+          return;
+        }
+        if ( random(100) <= _shipOrder.peekMax().getAttack() ){
+          _ships.get(targeted).hit();
+          print ("DING\n");
+        }
       }
+      passTurn();
+      gameState = "battle";
     }
   }
 }

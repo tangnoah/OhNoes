@@ -4,7 +4,7 @@ public class Ship implements Comparable {
   private int attackStat;
   private int armorStat;
   private int speedStat;
-  private Armor armor;
+  public Armor armor;
   private float x;
   private float y;
   private float heading;
