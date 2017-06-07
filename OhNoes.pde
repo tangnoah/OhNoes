@@ -171,7 +171,6 @@ void draw() {
   }
   if ( gameState.equals("attack")) {
     background(0, 200, 244);
-    //ad a new font here
     fill(100);
     for ( Ship b : _ships) {
 
@@ -401,6 +400,11 @@ void keyPressed() {
             message += "" + _ships.get(targeted).getDesc() + "'s engines disabled!\n";
           }
           totalHits += 1;
+        }
+        if(_shipOrder.peekMax().getDesc().equals("Canoe") && sqrt( sq(_shipOrder.peekMax().getPos()[0] - _ships.get(targeted).getPos()[0])//super special canoe
+        + sq(_shipOrder.peekMax().getPos()[1] - _ships.get(targeted).getPos()[1]) ) < 5){
+          result = _ships.get(targeted).hit();
+          totalHits += 50;
         }
       }
       message += _ships.get(targeted).getDesc() + " received " + totalHits + " hits from " + _shipOrder.peekMax().getDesc() + "!";
