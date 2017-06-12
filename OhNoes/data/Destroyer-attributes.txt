@@ -1,0 +1,7 @@
+10
+4
+30
+0
+1.57079633
+400
+DESTROYER:|The destroyer is a light and|quick ship, though heavily |armed. Destroyers are useful|for direct combat and are| valuable components of any| fleet.

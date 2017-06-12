@@ -1,0 +1,5 @@
+10 attack
+10 armor
+30 speed
+0 heading
+1.57079633 turnrate

@@ -1,0 +1,19 @@
+Plan as of 2017-06-02:
+
+Working:
+- Armor Class
+- Opening of the game
+- display and basic input during the game
+
+Viable or Finishd:
+- Ship class ( movement functions have been added)
+
+Plan for the week:
+- Continue to implement the actual gameplay.
+  - Allow UI to be passed between two players
+  - Implement menu for configuration of either player's
+    team
+- Add additional features:
+  - Different ship types
+  - Images and other visual tweaks
+  - Scenarios

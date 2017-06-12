@@ -1,0 +1,7 @@
+0
+1
+20
+0
+2.5
+10
+Canoe:|The canoe is a canoe.| It has no armor or guns. | Canoes are useful| for guerrilla warfare and | are generally not in a | sea-based fleet. This | canoe might be a bit | special though... 
